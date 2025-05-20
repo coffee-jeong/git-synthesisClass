@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.synthesisClass.mapper.MemberMapper">
+	<update id="updateActiveOntoOff" parameterType="com.example.synthesisClass.dto.Member">
+		UPDATE member m
+		SET active = 'OFF'
+		WHERE m.active = 'ON'
+		AND NOT EXISTS (
+		    SELECT 1
+		    FROM login_history lh
+		    WHERE lh.id = m.id
+		    AND lh.logindate >= DATE_SUB(NOW(), INTERVAL 1 YEAR)
+		);
+	</update>
+	
+	<select id="selectActiveByOff" parameterType="com.example.synthesisClass.dto.Member">
+		SELECT id, email
+		FROM member
+		WHERE active = 'OFF'
+	</select>
+	
+	<update id="findMemberPw" parameterType="com.example.synthesisClass.dto.Member">
+		UPDATE member
+		SET pw = #{pw}
+		WHERE id = #{id}
+		AND email = #{email}
+	</update>
+</mapper>
