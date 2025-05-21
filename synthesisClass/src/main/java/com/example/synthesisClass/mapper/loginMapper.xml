@@ -29,4 +29,12 @@
 		WHERE id = #{id}
 		ORDER BY logindate 
 	</select>
+	
+	<insert id="insertPwHistory" parameterType="com.example.synthesisClass.dto.PwHistory">
+		INSERT INTO pw_history(
+			id, pw
+		) values(
+			#{id}, #{pw}
+		)
+	</insert>
 </mapper>

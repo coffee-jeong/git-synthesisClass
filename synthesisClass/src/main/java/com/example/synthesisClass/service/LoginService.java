@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.synthesisClass.dto.LoginHistory;
 import com.example.synthesisClass.dto.Member;
+import com.example.synthesisClass.dto.PwHistory;
 import com.example.synthesisClass.mapper.LoginMapper;
 
 @Service
@@ -29,5 +30,11 @@ public class LoginService implements ILoginService{
 	public List<LoginHistory> selectLoginHistory(String id) {
 		
 		return loginMapper.selectLoginHistory(id);
+	}
+
+	@Override
+	public void insertPwHistory(PwHistory pwHistory) {
+		
+		loginMapper.insertPwHistory(pwHistory);
 	}
 }

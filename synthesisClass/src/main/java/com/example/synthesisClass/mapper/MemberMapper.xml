@@ -25,4 +25,44 @@
 		WHERE id = #{id}
 		AND email = #{email}
 	</update>
+	
+	<!-- 임시 비빌번호로 비밀번호 변경 -->
+	<update id="rechangeMemberPw" parameterType="com.example.synthesisClass.dto.Member">
+	    UPDATE member
+	    SET pw = #{newPw}, pwcktime = NULL
+	    WHERE id = #{id}
+	    AND pw = #{pw}
+	    AND pwcktime IS NOT NULL
+	    AND TIMESTAMPDIFF(MINUTE, pwcktime, NOW()) &lt; 11
+	</update>
+	
+	<update id="updateTemporaryPassword" parameterType="map">
+	    UPDATE member
+	    SET pw = #{pw},
+	        pwcktime = #{pwcktime}
+	    WHERE id = #{id}
+	</update>
+	
+	<!-- 상세정보 -->
+	<select id="selectMemberOne" parameterType="string" resultType="com.example.synthesisClass.dto.Member">
+		SELECT id, email
+		FROM member
+		WHERE id = #{id}
+	</select>
+	
+	<!-- 비밀번호 수정 -->
+	<update id="modifyMemeber" parameterType="com.example.synthesisClass.dto.Member">
+		UPDATE member
+		SET pw = #{newPw}
+		WHERE id = #{id}
+		AND pw = #{pw}
+	</update>
+	
+	<!-- 회원탈퇴 -->
+	<delete id="deleteMember" parameterType="com.example.synthesisClass.dto.Member">
+		DELETE 
+		FROM member
+		WHERE id = #{id}
+		AND pw = #{pw}
+	</delete>
 </mapper>

@@ -83,4 +83,9 @@ public class LoginController {
 		return "/admin/loginHistory";
 	}
 	
+	@GetMapping("admin/pwHistory")
+	public String pwHistory() {
+		return "/admin/pwHistory";
+	}
+	
 }

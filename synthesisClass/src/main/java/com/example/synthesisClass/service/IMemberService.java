@@ -10,4 +10,16 @@ public interface IMemberService {
 	int updateActiveOntoOff();
 	
 	void findMemberPw(Member member);
+	
+	// 임시비밀번호로 비밀번호 변경
+	int rechangeMemberPw(Member member, String id, String pw, String newPw);
+
+	// 상세정보
+	Member selectMemberOne(String id);
+	
+	// 비밀번호 수정
+	int modifyMemeber(Member member, String id, String pw, String newPw);
+	
+	// 회원탈퇴
+	int deleteMember(Member member, String id, String pw);
 }

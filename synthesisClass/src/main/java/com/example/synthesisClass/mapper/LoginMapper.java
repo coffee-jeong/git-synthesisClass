@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.example.synthesisClass.dto.LoginHistory;
 import com.example.synthesisClass.dto.Member;
+import com.example.synthesisClass.dto.PwHistory;
 
 @Mapper
 public interface LoginMapper {
@@ -16,5 +17,7 @@ public interface LoginMapper {
 	int insertLoginHistory(Member member);
 	
 	List<LoginHistory> selectLoginHistory(String id);
+	
+	int insertPwHistory(PwHistory pwHistory);
 
 }
