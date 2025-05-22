@@ -1,6 +1,7 @@
 package com.example.synthesisClass.mapper;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -32,5 +33,8 @@ public interface MemberMapper {
 	
 	// 비밀번호 변경 히스토리 삭제
 	int deletePwHistory();
+	
+	// 회원리스트
+	List<Member> selectMemberList();
 
 }

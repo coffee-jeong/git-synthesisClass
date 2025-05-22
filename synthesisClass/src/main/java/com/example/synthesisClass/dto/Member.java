@@ -10,4 +10,5 @@ public class Member {
 	private String active;
 	private String newPw;
 	private String pwcktime;
+	private String role;
 }

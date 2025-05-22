@@ -53,6 +53,17 @@
 		WHERE id = #{id}
 	</select>
 	
+	<!-- 회원리시트 -->
+	<select id="selectMemberList" parameterType="com.example.synthesisClass.dto.Member" resultType="com.example.synthesisClass.dto.Member">
+		SELECT id, active, role
+		FROM member
+		<if test="_parameter != null and _parameter != ''">
+			WHERE 1=1
+			AND id LIKE CONCAT('%', #{serchWord}, '%')
+		ORDER BY id
+		</if>
+	</select>
+	
 	<!-- 비밀번호 수정 -->
 	<update id="modifyMemeber" parameterType="com.example.synthesisClass.dto.Member">
 		UPDATE member

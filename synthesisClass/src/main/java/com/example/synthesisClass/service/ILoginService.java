@@ -20,4 +20,7 @@ public interface ILoginService {
 	
 
 	public String selectId(String id);
+	
+	// 비밀번호 변경 히스토리
+	List<PwHistory> selectPwHistory(String id);
 }

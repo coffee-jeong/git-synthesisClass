@@ -15,13 +15,20 @@ public interface LoginMapper {
 	
 	Member login(Member paramMember);
 	
+	// 로그인 히스토리 저장
 	int insertLoginHistory(Member member);
 	
+	// 로그인 히스토리 리스트
 	List<LoginHistory> selectLoginHistory(String id);
 	
+	// 비밀번호 히스토리 저장
 	int insertPwHistory(PwHistory pwHistory);
 	
+	// 아이디 중복 체크
 	@Select("SELECT id FROM member WHERE id = #{id}")
 	public String selectId(String id);
+	
+	// 비밀번호 변경 리스트
+	List<PwHistory> selectPwHistory(String id);
 
 }

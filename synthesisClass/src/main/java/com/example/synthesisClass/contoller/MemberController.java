@@ -1,5 +1,7 @@
 package com.example.synthesisClass.contoller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -105,4 +107,11 @@ public class MemberController {
 		return "redirect:/login";
 	}
 	
+	// 회원리스트
+	@GetMapping("/admin/memberList")
+	public String selectMemberList(Model model, Member member) {
+		List<Member> memberList = memberService.selectMemberList();
+		model.addAttribute("memberList", memberList);
+		return "/admin/memberList";
+	}
 }

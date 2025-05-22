@@ -1,15 +1,14 @@
 package com.example.synthesisClass.service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.synthesisClass.dto.Member;
 import com.example.synthesisClass.dto.PwHistory;
@@ -112,10 +111,17 @@ public class MemberService implements IMemberService{
 		return row;
 	}
 
+	// 비밀번호 변경 히스토리 삭제
 	@Override
 	public int deletePwHistory() {
 		
 		return memberMapper.deletePwHistory();
+	}
+
+	// 멤버 리스트 
+	@Override
+	public List<Member> selectMemberList() {
+		return memberMapper.selectMemberList();
 	}
 
 }

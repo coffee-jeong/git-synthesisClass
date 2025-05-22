@@ -1,5 +1,7 @@
 package com.example.synthesisClass.service;
 
+import java.util.List;
+
 import com.example.synthesisClass.dto.Member;
 
 public interface IMemberService {
@@ -22,4 +24,7 @@ public interface IMemberService {
 	
 	// 비밀번호 변경 이력 삭제
 	int deletePwHistory();
+	
+	// 멤버 리스트
+	List<Member> selectMemberList();
 }

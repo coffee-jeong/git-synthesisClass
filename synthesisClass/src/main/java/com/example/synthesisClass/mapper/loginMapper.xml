@@ -3,13 +3,13 @@
 <mapper namespace="com.example.synthesisClass.mapper.LoginMapper">
 	<insert id="joinMember" parameterType="com.example.synthesisClass.dto.Member">
 		INSERT INTO member(
-			id, pw, email, active
-			) VALUES (#{id}, #{pw}, #{email}, 'ON')
+			id, pw, email, active, role
+			) VALUES (#{id}, #{pw}, #{email}, 'ON', 'MEMBER')
 	</insert>
 	
 	<select id="login" parameterType="com.example.synthesisClass.dto.Member">
 		SELECT 
-			id, pw
+			id, pw, role, active
 		FROM member
 		WHERE id = #{id} and pw = #{pw}
 	</select>
@@ -26,7 +26,10 @@
 		SELECT 
 			id, logindate
 		FROM login_history
-		WHERE id = #{id}
+		WHERE 1=1
+		<if test="_parameter != null and _parameter != ''">
+			AND id = #{id}
+		</if>
 		ORDER BY logindate 
 	</select>
 	
@@ -37,4 +40,15 @@
 			#{id}, #{pw}
 		)
 	</insert>
+	
+	<select id="selectPwHistory" parameterType="com.example.synthesisClass.dto.PwHistory">
+		SELECT 
+			id, changeDate
+		FROM pw_history
+		WHERE 1=1
+		<if test="_parameter != null and _parameter != ''">
+			AND id = #{id}
+		</if>
+		ORDER BY changeDate
+	</select>
 </mapper>

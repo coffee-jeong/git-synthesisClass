@@ -20,18 +20,21 @@ public class LoginService implements ILoginService{
 	public Member login(Member paramMember) {
           return loginMapper.login(paramMember);
     }
-
+	
+	// 로그인 히스토리
 	@Override
 	public void insertLoginHistory(Member member) {
 		loginMapper.insertLoginHistory(member);
 	}
-
+	
+	// 로그기록 리스트
 	@Override
 	public List<LoginHistory> selectLoginHistory(String id) {
 		
 		return loginMapper.selectLoginHistory(id);
 	}
 
+	// 비밀번경 히스토리 저장
 	@Override
 	public void insertPwHistory(PwHistory pwHistory) {
 		
@@ -44,6 +47,13 @@ public class LoginService implements ILoginService{
 		
 		return loginMapper.selectId(id);
 		
+	}
+	
+	// 비밀번호 변경 히스토리 리스트
+	@Override
+	public List<PwHistory> selectPwHistory(String id) {
+		
+		return loginMapper.selectPwHistory(id);
 	}
 
 }

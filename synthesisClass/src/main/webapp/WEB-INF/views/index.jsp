@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/views/common/navbar.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,12 +7,5 @@
 <title>Insert title here</title>
 </head>
 <body>
-	${member.id}님 반갑습니다.
-	<div><a href="/joinMember">회원가입</a></div>
-	<div><a href="/login">로그인</a></div>
-	<div><a href="/logout">로그아웃</a></div>
-	<div><a href="/findPw">비밀번호찾기</a></div>
-	<div><a href="/admin/loginHistory?id=${id}">로그인 히스토리</a></div>
-	<div><a href="/member/memberOne?id=${id}">회원정보</a></div>
 </body>
 </html>

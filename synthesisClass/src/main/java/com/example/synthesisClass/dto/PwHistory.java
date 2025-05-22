@@ -7,5 +7,5 @@ public class PwHistory {
 	private int no;
 	private String id;
 	private String pw;
-	private String changDate;
+	private String changeDate;
 }

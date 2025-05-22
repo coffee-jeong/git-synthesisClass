@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.synthesisClass.dto.LoginHistory;
 import com.example.synthesisClass.dto.Member;
+import com.example.synthesisClass.dto.PwHistory;
 import com.example.synthesisClass.mapper.LoginMapper;
 import com.example.synthesisClass.service.LoginService;
 
@@ -28,7 +29,7 @@ public class LoginController {
 	
 	// 인덱스, 메인페이지
 	@GetMapping({"/", "index"}) 
-	public String index() {
+	public String index(HttpSession session) {
 		return "/index";
 	}
 	
@@ -63,7 +64,6 @@ public class LoginController {
 		
 	}
 	
-	
 	// 로그인
 	@GetMapping("login")
 	public String login() {
@@ -82,6 +82,8 @@ public class LoginController {
 		Member loginMember  = loginService.login(member);
 		if(loginMember  != null) {
 			session.setAttribute("id", member.getId());
+			session.setAttribute("loginMember", loginMember); // 세션에 로그인 정보 저장
+			log.info("세션 사용자 권한: {}", loginMember.getRole());
 			loginService.insertLoginHistory(loginMember);
 			return "/index";
 		} else {
@@ -100,7 +102,10 @@ public class LoginController {
 	}
 	
 	@GetMapping("admin/pwHistory")
-	public String pwHistory() {
+	public String pwHistory(Model model, @RequestParam(value = "serchWord", required = false) String id) {
+		List<PwHistory> pwHistoryList = loginService.selectPwHistory(id);
+		model.addAttribute("pwHistoryList", pwHistoryList);
+		model.addAttribute("id", id);
 		return "/admin/pwHistory";
 	}
 	
