@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.synthesisClass.mapper.MemberMapper">
+	<!-- 1년이상 미접속시 휴면계정처리 -->
 	<update id="updateActiveOntoOff" parameterType="com.example.synthesisClass.dto.Member">
 		UPDATE member m
 		SET active = 'OFF'
@@ -19,6 +20,7 @@
 		WHERE active = 'OFF'
 	</select>
 	
+	<!--  -->
 	<update id="findMemberPw" parameterType="com.example.synthesisClass.dto.Member">
 		UPDATE member
 		SET pw = #{pw}
@@ -36,6 +38,7 @@
 	    AND TIMESTAMPDIFF(MINUTE, pwcktime, NOW()) &lt; 11
 	</update>
 	
+	<!-- 임시비밀번호 받급받고 10분(pwcktime)내의 변경 -->
 	<update id="updateTemporaryPassword" parameterType="map">
 	    UPDATE member
 	    SET pw = #{pw},
@@ -64,5 +67,18 @@
 		FROM member
 		WHERE id = #{id}
 		AND pw = #{pw}
+	</delete>
+	
+	<!-- 비밀번호 변경이력 삭제 -->
+	<delete id="deletePwHistory" parameterType="com.example.synthesisClass.dto.PwHistory">
+		DELETE FROM pw_history
+		WHERE no IN (
+		    SELECT no FROM (
+		        SELECT no,
+		               ROW_NUMBER() OVER (PARTITION BY id ORDER BY change_date DESC) AS rn
+		        FROM pw_history
+		    ) AS sub
+		    WHERE rn &gt; 5
+		)
 	</delete>
 </mapper>

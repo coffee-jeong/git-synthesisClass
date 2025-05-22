@@ -112,4 +112,10 @@ public class MemberService implements IMemberService{
 		return row;
 	}
 
+	@Override
+	public int deletePwHistory() {
+		
+		return memberMapper.deletePwHistory();
+	}
+
 }

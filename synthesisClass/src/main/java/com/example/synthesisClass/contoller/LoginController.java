@@ -1,6 +1,8 @@
 package com.example.synthesisClass.contoller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.synthesisClass.dto.LoginHistory;
 import com.example.synthesisClass.dto.Member;
@@ -24,10 +27,11 @@ public class LoginController {
 	@Autowired LoginService loginService;
 	
 	// 인덱스, 메인페이지
-	@GetMapping({"/", "/index"}) 
+	@GetMapping({"/", "index"}) 
 	public String index() {
 		return "/index";
 	}
+	
 	// 회원가입
 	@GetMapping("joinMember")
 	public String joinMember() {
@@ -40,13 +44,25 @@ public class LoginController {
 		if(row == 1) {
 			model.addAttribute("msg", "회원가입 성공");
 			log.info("회원가입 성공:" + row);
-			return "/joinMember";
+			return "/login";
 		} else {
 			log.info("회원가입 실패:" + row);
 			model.addAttribute("msg", "회원가입 실패");
 			return "/joinMember";
 		}
 	}
+	
+	// 회원가입시 아이디 중복 체크
+	@ResponseBody
+	@GetMapping("checkId")
+	public Map<String, Boolean> chId(@RequestParam("id") String id) {
+		String result = loginMapper.selectId(id);
+		Map<String, Boolean> response = new HashMap<>();
+		response.put("duplicated", result != null);
+	    return response;
+		
+	}
+	
 	
 	// 로그인
 	@GetMapping("login")

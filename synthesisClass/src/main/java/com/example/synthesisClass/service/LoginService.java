@@ -37,4 +37,13 @@ public class LoginService implements ILoginService{
 		
 		loginMapper.insertPwHistory(pwHistory);
 	}
+
+	// 아이디 중복 확인
+	@Override
+	public String selectId(String id) {
+		
+		return loginMapper.selectId(id);
+		
+	}
+
 }

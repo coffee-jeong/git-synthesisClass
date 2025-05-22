@@ -29,5 +29,8 @@ public interface MemberMapper {
 	
 	// 회원탈퇴
 	int deleteMember(Member member);
+	
+	// 비밀번호 변경 히스토리 삭제
+	int deletePwHistory();
 
 }
