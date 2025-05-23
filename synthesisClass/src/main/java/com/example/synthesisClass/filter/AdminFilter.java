@@ -36,7 +36,7 @@ public class AdminFilter implements Filter{
 		// 비관리자가 접근시
 		if(loginMember instanceof Member) {
 			Member member = (Member) loginMember;
-			if(!"ADMIN".equals(member.getRole())) {
+			if(!"ADMIN".equals(member.getRole()) && !"EMPLOYEE".equals(member.getRole()) && !"OWNER".equals(member.getRole())) {
 				res.sendRedirect("/index");
 				return;
 			}

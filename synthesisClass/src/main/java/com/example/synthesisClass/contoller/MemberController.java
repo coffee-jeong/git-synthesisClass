@@ -108,10 +108,10 @@ public class MemberController {
 	}
 	
 	// 회원리스트
-	@GetMapping("/admin/memberList")
+	@GetMapping("/employee/memberList")
 	public String selectMemberList(Model model, Member member) {
 		List<Member> memberList = memberService.selectMemberList();
 		model.addAttribute("memberList", memberList);
-		return "/admin/memberList";
+		return "/employee/memberList";
 	}
 }
