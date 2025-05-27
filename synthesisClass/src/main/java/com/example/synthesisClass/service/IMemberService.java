@@ -2,6 +2,7 @@ package com.example.synthesisClass.service;
 
 import java.util.List;
 
+import com.example.mbboard.dto.Page;
 import com.example.synthesisClass.dto.Member;
 
 public interface IMemberService {
@@ -26,5 +27,7 @@ public interface IMemberService {
 	int deletePwHistory();
 	
 	// 멤버 리스트
-	List<Member> selectMemberList();
+	List<Member> selectMemberList(Page page);
+	
+	int totalCount(String searchWord);
 }

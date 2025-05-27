@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.mbboard.dto.Page;
 import com.example.synthesisClass.dto.Member;
+import com.example.synthesisClass.service.DocumentService;
 import com.example.synthesisClass.service.MemberService;
 
 @Controller
@@ -109,9 +111,18 @@ public class MemberController {
 	
 	// 회원리스트
 	@GetMapping("/employee/memberList")
-	public String selectMemberList(Model model, Member member) {
-		List<Member> memberList = memberService.selectMemberList();
+	public String selectMemberList(Model model, Member member
+								,@RequestParam(defaultValue = "1") int page
+								,@RequestParam(defaultValue = "10") int size
+								,@RequestParam(defaultValue = "") String searchWord) {
+		
+		int totalCount = memberService.totalCount(searchWord);
+		Page paging = new Page(size, page, totalCount, searchWord);
+		
+		List<Member> memberList = memberService.selectMemberList(paging);
 		model.addAttribute("memberList", memberList);
+		model.addAttribute("page", paging);
+		
 		return "/employee/memberList";
 	}
 }

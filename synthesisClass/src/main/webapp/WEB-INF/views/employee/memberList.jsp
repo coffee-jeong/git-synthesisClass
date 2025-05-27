@@ -22,11 +22,15 @@
 			<td>${member.active}</td>
 		</tr>
 		</c:forEach>
-		
 	</table>
 	
-	<form method="get" action="/admin/memberList">
-		아이디 : <input type="text" id="serchWord" name="serchWord" value="${serchWord}" placeholder="아이디 검색">
+	<!-- 페이징 -->
+	<c:forEach var="i" begin="1" end="${page.lastPage}">
+	    <a href="?page=${i}&searchWord=${page.searchWord}">${i}</a>
+	</c:forEach>
+	
+	<form method="get" action="/employee/memberList">
+		아이디 : <input type="text" id="searchWord" name="searchWord" placeholder="아이디 검색">
 		<button type="submit">검색하기</button>
 	</form>
 </body>

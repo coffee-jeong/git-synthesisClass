@@ -54,14 +54,26 @@
 	</select>
 	
 	<!-- 회원리시트 -->
-	<select id="selectMemberList" parameterType="com.example.synthesisClass.dto.Member" resultType="com.example.synthesisClass.dto.Member">
+	<select id="selectMemberList" parameterType="com.example.synthesisClass.dto.Page" resultType="com.example.synthesisClass.dto.Member">
 		SELECT id, active, role
 		FROM member
-		<if test="_parameter != null and _parameter != ''">
-			WHERE 1=1
-			AND id LIKE CONCAT('%', #{serchWord}, '%')
+			<where>
+		        <if test="searchWord != null and searchWord != ''">
+		            id LIKE CONCAT('%', #{searchWord}, '%')
+		        </if>
+    		</where>
 		ORDER BY id
-		</if>
+		LIMIT #{BeginRow}, #{rowPerPage}
+	</select>
+	
+	<!-- 검색기능 -->
+	<select id="totalCount" parameterType="com.example.synthesisClass.dto.Page" resultType="int">
+    SELECT COUNT(*) FROM member
+	    <where>
+	        <if test="searchWord != null and searchWord != ''">
+	            id LIKE CONCAT('%', #{searchWord}, '%')
+	        </if>
+	    </where>
 	</select>
 	
 	<!-- 비밀번호 수정 -->

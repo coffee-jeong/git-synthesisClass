@@ -13,10 +13,18 @@
 </script>
 </head>
 <body>
-	<h1>서류 작성</h1>
+	<h1>결제서류</h1>
+	<table border="1">
+		<tr>
+			<td><a href="/admin/signForm">관리자 결제</a></td>
+			<td></td>
+			<td><a href="/owner/signForm">대표 결제</a></td>
+			<td></td>
+		</tr>
+	</table>
 	
 	<!-- 결제폼 -->
-	<form method="post" id="document" name="document">
+	<form method="get" id="document" name="document">
 		<table border="1">
 			<tr>
 				<th>작성자</th>

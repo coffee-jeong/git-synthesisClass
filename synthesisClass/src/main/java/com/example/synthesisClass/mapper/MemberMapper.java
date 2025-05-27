@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import com.example.mbboard.dto.Page;
 import com.example.synthesisClass.dto.Member;
 
 @Mapper
@@ -35,6 +36,9 @@ public interface MemberMapper {
 	int deletePwHistory();
 	
 	// 회원리스트
-	List<Member> selectMemberList();
+	List<Member> selectMemberList(Page page);
+	
+	// 회원 검색
+	int totalCount(@Param("searchWord") String searchWord);
 
 }

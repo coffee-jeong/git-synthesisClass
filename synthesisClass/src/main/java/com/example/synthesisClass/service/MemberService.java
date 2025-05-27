@@ -10,6 +10,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.example.mbboard.dto.Page;
 import com.example.synthesisClass.dto.Member;
 import com.example.synthesisClass.dto.PwHistory;
 import com.example.synthesisClass.mapper.LoginMapper;
@@ -120,8 +121,13 @@ public class MemberService implements IMemberService{
 
 	// 멤버 리스트 
 	@Override
-	public List<Member> selectMemberList() {
-		return memberMapper.selectMemberList();
+	public List<Member> selectMemberList(Page page) {
+		 return memberMapper.selectMemberList(page);
+	}
+
+	@Override
+	public int totalCount(String searchWord) {
+		return memberMapper.totalCount(searchWord);
 	}
 
 }

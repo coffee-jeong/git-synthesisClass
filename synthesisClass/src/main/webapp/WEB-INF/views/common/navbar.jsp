@@ -20,6 +20,7 @@
 				<c:if test="${sessionScope.loginMember.role == 'ADMIN' || sessionScope.loginMember.role == 'EMPLOYEE' || sessionScope.loginMember.role == 'OWNER'}">
 					<li><a href="/employee/memberList">회원리스트</a></li>
 					<li><a href="/employee/document">결제서류 작성</a></li>
+					<li><a href="/employee/documentList">서류 리스트</a></li>
 					<li><a href="/admin/loginHistory?id=${sessionScope.loginMember.id}">로그인 히스토리</a></li>
 					<li><a href="/admin/pwHistory?id=${sessionScope.loginMember.id}">비밀번호 변경 히스토리</a></li>
 				</c:if>
