@@ -4,11 +4,11 @@ import lombok.Data;
 
 @Data
 public class Signapp {
-	public int no;
-	public int documentNo;
-	public String id;
-	public String admminSign;
-	public String ownerSing;
-	public String signImg;
-	public String filename;
+	private int no;
+	private int documentNo;
+	private String id;
+	private String admminSign;
+	private String ownerSing;
+	private String signImg;
+	private String filename;
 }

@@ -15,14 +15,18 @@
 			<th>제목</th>
 			<th>작성자</th>
 			<th>작성일</th>
+			<th>상태</th>
 		</tr>
 		
 		<c:forEach var="document" items="${documentList}">
 		<tr>
 			<td>${document.no}</td>
-			<td>${document.title}</td>
+			<td>
+				<a href="/employee/documentOne?no=${document.no}">${document.title}</a>
+			</td>
 			<td>${document.id}</td>
 			<td>${document.writeDate}</td>
+			<td>${document.status}</td>
 		</tr>
 		</c:forEach>
 	</table>

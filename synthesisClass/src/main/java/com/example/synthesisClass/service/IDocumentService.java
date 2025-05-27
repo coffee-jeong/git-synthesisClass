@@ -14,4 +14,13 @@ public interface IDocumentService {
 	// 리스트(페이징) 및 검색
 	List<Document> selectDocumentList(Page page);
 	int totalCount(Page page);
+	
+	/** 상세보기 **/
+	Document selectDocumentOne(int no);
+	
+	/** 서류수정 **/
+	int modifyDocument(Document document);
+	
+	/** 서류삭제 **/
+	int deleteDocument(Document document);
 }

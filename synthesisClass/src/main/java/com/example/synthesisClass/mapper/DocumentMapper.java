@@ -17,4 +17,13 @@ public interface DocumentMapper {
 	
 	/** 검색 **/
 	int totalCount(Page page);
+	
+	/** 상세보기 **/
+	Document selectDocumentOne(int no);
+	
+	/** 수정 **/
+	int modifyDocument(Document document);
+	
+	/** 삭제 **/
+	int deleteDocument(Document document);
 }

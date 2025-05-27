@@ -24,9 +24,32 @@ public class DocumentService implements IDocumentService{
 	public List<Document> selectDocumentList(Page page) {
 		return documentMapper.selectDocumentList(page);
 	}
-
+	
+	/** 검색 **/
 	@Override
 	public int totalCount(Page page) {
 		return documentMapper.totalCount(page);
 	}
+
+	/** 리스트 상세보기 **/
+	@Override
+	public Document selectDocumentOne(int no) {
+		
+		return documentMapper.selectDocumentOne(no);
+	}
+	
+	/** 수정하기 **/
+	@Override
+	public int modifyDocument(Document document) {
+		
+		return documentMapper.modifyDocument(document);
+	}
+
+	@Override
+	public int deleteDocument(Document document) {
+		
+		return documentMapper.deleteDocument(document);
+	}
+	
+	
 }

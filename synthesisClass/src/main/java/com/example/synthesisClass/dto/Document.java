@@ -4,9 +4,10 @@ import lombok.Data;
 
 @Data
 public class Document {
-	public int no;
-	public String id;
-	public String title;
-	public String content;
-	public String writeDate;
+	private int no;
+	private String id;
+	private String title;
+	private String content;
+	private String writeDate;
+	private String status;
 }

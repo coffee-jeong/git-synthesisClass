@@ -11,7 +11,7 @@
 	
 	<!-- 리스트 -->
 	<select id="selectDocumentList" parameterType="com.example.synthesisClass.dto.Page" resultType="com.example.synthesisClass.dto.Document">
-		SELECT NO, id, title, writeDate
+		SELECT NO, id, title, writeDate, status
 		FROM document
 			<where>
 				<if test="searchWord != null and searchWord != ''">
@@ -51,4 +51,26 @@
 			</if>
 	    </where>
 	</select>
+	
+	<!-- 리스트 상세보기 -->
+	<select id="selectDocumentOne" parameterType="com.example.synthesisClass.dto.Document" resultType="com.example.synthesisClass.dto.Document">
+		SELECT no, id, title, content, writeDate
+		FROM document
+		Where no = #{no}
+	</select>
+	
+	<!-- 수정하기 -->
+	<update id="modifyDocument" parameterType="com.example.synthesisClass.dto.Document">
+	    UPDATE document
+	    SET title = #{title},
+	        content = #{content}
+	    WHERE no = #{no}
+	</update>
+	
+	<!-- 삭제하기 -->
+	<delete id="deleteDocument" parameterType="com.example.synthesisClass.dto.Document">
+		DELETE  
+		FROM document
+		WHERE no = #{no}
+	</delete>
 </mapper>

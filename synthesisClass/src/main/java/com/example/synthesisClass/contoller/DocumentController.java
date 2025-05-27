@@ -59,4 +59,44 @@ public class DocumentController {
 		model.addAttribute("page", paging);
 		return "/employee/documentList";
 	}
+	
+	// 리스트 상세보기
+	@GetMapping("/employee/documentOne")
+	public String documentOne(Model model, @RequestParam(value="no") int no) {
+		Document document = documentService.selectDocumentOne(no);
+		model.addAttribute("document", document);
+		return "/employee/documentOne";
+	}
+	
+	// 결제서류 수정
+	@GetMapping("/employee/modifyDocument")
+	public String modifyDocument(@RequestParam("no") int no, Model model) {
+		Document document = documentService.selectDocumentOne(no); // 해당 문서 가져오기
+	    model.addAttribute("document", document);
+		return "/employee/modifyDocument";
+	}
+	
+	@PostMapping("/employee/modifyDocument")
+	public String modifyDocument(Document document) {
+		int row = documentService.modifyDocument(document);
+		if(row != 1) {
+			log.info("수정실패");
+			return "redirect:/employee/modifyDocument";
+		} else {
+			return "/employee/documentOne";
+		}
+	}
+
+	// 결제서류 삭제
+	@GetMapping("/employee/deleteDocument")
+	public String deleteDocument(Document document) {
+		int row = documentService.deleteDocument(document);
+		if(row != 1) {
+			log.info("삭제실패");
+			return "/employee/deleteDocument";
+		} else {
+			return "redirect:/employee/documentList";
+		}
+	}
+		
 }
