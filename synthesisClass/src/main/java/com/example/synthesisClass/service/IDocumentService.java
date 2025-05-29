@@ -23,4 +23,6 @@ public interface IDocumentService {
 	
 	/** 서류삭제 **/
 	int deleteDocument(Document document);
+	
+	Document getDocument(int docNo);
 }

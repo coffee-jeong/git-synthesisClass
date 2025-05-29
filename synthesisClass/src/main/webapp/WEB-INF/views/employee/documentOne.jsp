@@ -10,10 +10,24 @@
 	<h1>결제서류</h1>
 	<table border="1">
 		<tr>
-			<th>관리자</th>
-			<td><a href="/admin/signForm"></a>결제하기</td>
-			<th>대표</th>
-			<td><a href="/owner/signForm"></a>결제하기</td>
+			<th>관리자 결제</th>
+			<td>
+				<c:choose>
+					<c:when test="${document.adminSigned}">승인 완료</c:when>
+					<c:otherwise>
+						<a href="/signForm?docNo=${document.no}&role=admin">결제하기</a>
+					</c:otherwise>
+				</c:choose>
+			</td>
+			<th>대표 결제</th>
+			<td>
+				<c:choose>
+					<c:when test="${document.ownerSigned}">승인 완료</c:when>
+					<c:otherwise>
+						<a href="/signForm?docNo=${document.no}&role=owner">결제하기</a>
+					</c:otherwise>
+				</c:choose>
+			</td>
 		</tr>
 	</table>
 	<br>
@@ -37,8 +51,9 @@
 		</tr>
 		<tr>
 			<th>작성일</th>
-			<td>${document.writeDate}</td>
+			<td>${document.writedate}</td>
 		</tr>
+		
 	</table>
 	<a href="/employee/modifyDocument?no=${document.no}">수정하기</a>
 	<a href="/employee/deleteDocument?no=${document.no}">삭제하기</a>

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.synthesisClass.dto.Document;
@@ -98,5 +99,11 @@ public class DocumentController {
 			return "redirect:/employee/documentList";
 		}
 	}
-		
+	
+	// 사인
+	@GetMapping("/signForm")
+	public String signForm() {
+		return "/signForm";
+	}
+
 }

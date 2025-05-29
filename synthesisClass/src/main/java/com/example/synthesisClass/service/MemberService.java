@@ -10,7 +10,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.example.mbboard.dto.Page;
+import com.example.synthesisClass.dto.Page;
 import com.example.synthesisClass.dto.Member;
 import com.example.synthesisClass.dto.PwHistory;
 import com.example.synthesisClass.mapper.LoginMapper;

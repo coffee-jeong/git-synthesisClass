@@ -50,6 +50,11 @@ public class DocumentService implements IDocumentService{
 		
 		return documentMapper.deleteDocument(document);
 	}
+
+	@Override
+	public Document getDocument(int docNo) {
+		return documentMapper.selectDocumentByNo(docNo);
+	}
 	
 	
 }

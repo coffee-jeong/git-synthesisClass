@@ -8,6 +8,8 @@ public class Document {
 	private String id;
 	private String title;
 	private String content;
-	private String writeDate;
+	private String writedate;
 	private String status;
+	private boolean adminSigned;
+    private boolean ownerSigned;
 }

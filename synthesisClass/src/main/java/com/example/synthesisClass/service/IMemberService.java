@@ -2,7 +2,7 @@ package com.example.synthesisClass.service;
 
 import java.util.List;
 
-import com.example.mbboard.dto.Page;
+import com.example.synthesisClass.dto.Page;
 import com.example.synthesisClass.dto.Member;
 
 public interface IMemberService {

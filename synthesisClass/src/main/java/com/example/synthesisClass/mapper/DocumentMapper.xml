@@ -3,7 +3,7 @@
 <mapper namespace="com.example.synthesisClass.mapper.DocumentMapper">
 	<insert id="insertAddDocument" parameterType="com.example.synthesisClass.dto.Document">
 		INSERT INTO document (
-			id, title, content, writeDate
+			id, title, content, writedate
 		) values (
 			#{id}, #{title}, #{content}, now()
 		)
@@ -11,7 +11,7 @@
 	
 	<!-- 리스트 -->
 	<select id="selectDocumentList" parameterType="com.example.synthesisClass.dto.Page" resultType="com.example.synthesisClass.dto.Document">
-		SELECT NO, id, title, writeDate, status
+		SELECT NO, id, title, writedate, status
 		FROM document
 			<where>
 				<if test="searchWord != null and searchWord != ''">
@@ -54,7 +54,7 @@
 	
 	<!-- 리스트 상세보기 -->
 	<select id="selectDocumentOne" parameterType="com.example.synthesisClass.dto.Document" resultType="com.example.synthesisClass.dto.Document">
-		SELECT no, id, title, content, writeDate
+		SELECT no, id, title, content, writedate
 		FROM document
 		Where no = #{no}
 	</select>
@@ -73,4 +73,11 @@
 		FROM document
 		WHERE no = #{no}
 	</delete>
+	
+    <select id="selectDocumentByNo" parameterType="int" resultType="com.example.synthesisClass.dto.Document">
+        SELECT no, title, content, id, writedate, admin_signed, owner_signed
+        FROM document
+        WHERE no = #{docNo}
+    </select>
+
 </mapper>

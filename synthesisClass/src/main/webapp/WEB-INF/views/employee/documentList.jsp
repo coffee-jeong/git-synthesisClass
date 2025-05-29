@@ -25,7 +25,7 @@
 				<a href="/employee/documentOne?no=${document.no}">${document.title}</a>
 			</td>
 			<td>${document.id}</td>
-			<td>${document.writeDate}</td>
+			<td>${document.writedate}</td>
 			<td>${document.status}</td>
 		</tr>
 		</c:forEach>

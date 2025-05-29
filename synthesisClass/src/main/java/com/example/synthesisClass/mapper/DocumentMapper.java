@@ -26,4 +26,8 @@ public interface DocumentMapper {
 	
 	/** 삭제 **/
 	int deleteDocument(Document document);
+
+	Document selectDocumentByNo(int docNo);
+	
+	
 }

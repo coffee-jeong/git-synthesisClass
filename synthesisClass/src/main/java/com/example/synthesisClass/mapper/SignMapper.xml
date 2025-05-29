@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.synthesisClass.mapper.SignMapper">
+		<!-- signapp INSERT -->
+	<insert id="insertSignature" parameterType="map">
+	    INSERT INTO signapp (documentNo, id, filename, signimg)
+	    VALUES (#{docNo}, #{userId}, #{fileName}, #{signImg})
+	</insert>
+	
+	<update id="updateAdminSigned">
+	    UPDATE document SET admin_signed = 'Y' WHERE no = #{docNo}
+	</update>
+	
+	<update id="updateOwnerSigned">
+	    UPDATE document SET owner_signed = 'Y' WHERE no = #{docNo}
+	</update>
+	
+	<select id="getAdminSignStatus" resultType="String">
+	    SELECT admin_signed FROM document WHERE no = #{docNo}
+	</select>
+	
+	<select id="isBothSigned" resultType="boolean">
+	    SELECT IFNULL((admin_signed = 'Y' AND owner_signed = 'Y'), FALSE)
+	    FROM document
+	    WHERE no = #{docNo}
+	</select>
+	
+	<update id="updateStatusToCompleted">
+	    UPDATE document SET status = '완결' WHERE no = #{docNo}
+	</update>
+
+</mapper>
